@@ -1,0 +1,105 @@
+@import "../../styles/_mixins.scss";
+
+.section {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.title {
+  margin-bottom: 12px;
+  color: var(--primary-text-color);
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.subtitle {
+  margin-bottom: 16px;
+  color: var(--secondary-text-color);
+  font-weight: 400;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.content {
+  width: 100%;
+}
+
+.centered {
+  @include centered();
+
+  .title,
+  .subtitle {
+    width: 100%;
+  }
+}
+
+.background {
+  background-color: var(--secondary-bg-color);
+  box-shadow: var(--box-shadow);
+}
+
+.bordered {
+  border: 1px solid var(--gray-color);
+}
+
+/* Padding sizes */
+.padding-sm {
+  padding: 16px;
+}
+
+.padding-md {
+  padding: 24px;
+}
+
+.padding-lg {
+  padding: 32px;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1025px) {
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .subtitle {
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+  }
+
+  .padding-sm {
+    padding: 12px;
+  }
+
+  .padding-md {
+    padding: 16px;
+  }
+
+  .padding-lg {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 550px) {
+  .title {
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+  }
+
+  .subtitle {
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+  }
+
+  .padding-sm {
+    padding: 8px;
+  }
+
+  .padding-md {
+    padding: 12px;
+  }
+
+  .padding-lg {
+    padding: 16px;
+  }
+}

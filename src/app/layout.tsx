@@ -1,15 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Rubik, Montserrat, MedievalSharp } from "next/font/google";
+import "../styles/globals.scss";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const rubik = Rubik({
+  variable: "--primary-font-rubik",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const montserrat = Montserrat({
+  variable: "--secondary-font-montserrat",
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
+});
+
+const medievalSharp = MedievalSharp({
+  variable: "--tertiary-font-medieval",
+  subsets: ["latin"],
+  weight: ["400"],
 });
 
 export const metadata: Metadata = {
@@ -24,7 +32,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body
+        className={`${rubik.variable} ${montserrat.variable} ${medievalSharp.variable}`}
+      >
         {children}
       </body>
     </html>

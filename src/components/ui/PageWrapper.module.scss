@@ -1,0 +1,45 @@
+@import "../../styles/_mixins.scss";
+
+.wrapper {
+  width: 100%;
+}
+
+.title {
+  margin-bottom: 18px;
+  color: var(--primary-text-color);
+  font-weight: 600;
+  font-size: 1.75rem;
+  line-height: 1.1;
+}
+
+.content {
+  width: 100%;
+}
+
+.centered {
+  @include centered();
+}
+
+.padded {
+  @include padded();
+}
+
+/* Breakpoints tweaks for title only */
+@media (min-width: 1280px) {
+  .title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 1025px) {
+  .title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .title {
+    margin-bottom: 12px;
+    font-size: 1.25rem;
+  }
+}
