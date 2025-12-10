@@ -1,3 +1,5 @@
+@use "@/styles/index" as *;
+
 .container {
   width: 100%;
   max-width: 100%;
@@ -5,14 +7,14 @@
   padding: 0 8px;
 }
 
-@media (min-width: 551px) {
+@include minWidth(sm) {
   .container {
     max-width: 700px;
     padding: 0 20px;
   }
 }
 
-@media (min-width: 1025px) {
+@include minWidth(md) {
   .container {
     max-width: 1050px;
   }

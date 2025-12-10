@@ -5,14 +5,26 @@
 
   --primary-text-color: #fff;
   --secondary-text-color: #ffffff40;
+  --accent-color: #ffd026;
 
   --primary-bg-color: #0a0e16;
   --secondary-bg-color: #141a26;
   --input-bg-color: #0e141e;
+
   --button-bg-color: #222734;
+  --button-hover-color: #222734;
 
   --gray-color: #ffffff80;
-  --accent-color: #ffd026;
+  --blue-color: #025cc1;
 
-  --box-shadow: 0 0 7.4px #ffd0260d inset;
+  --shadow-card:
+    0 0 4px 5.5px #264079, 0 0 5px 5px #6066d0, 0 0 8px 4.5px #15688e;
+  --shadow-button: 0 0 7.4px #ffd0260d inset;
+
+  --radius-4: 4px;
+  --radius-8: 8px;
+  --radius-16: 16px;
+
+  --transition-slow: all 0.5s ease-in-out;
+  --transition-base: all 0.2s ease-in-out;
 }
