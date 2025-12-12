@@ -13,8 +13,8 @@ import styles from "./page.module.scss";
 import { useBalance } from "@/hooks/useBalance";
 import { Button } from "@/components/ui/Button";
 import Image from "next/image";
-import { useGameStore } from "@/store/gameStore";
 import { useSound, useSoundStore } from "@/hooks/useSound";
+import { useGame } from "@/hooks/useGame";
 import { calculateWin } from "@/utils/calculateWin";
 import { Risk } from "@/utils/generateMultipliers";
 
@@ -31,14 +31,16 @@ export default function GamePage() {
   const [isFlipping, setIsFlipping] = useState(false);
 
   const balance = useBalance();
-  const currentBet = useGameStore((state) => state.currentBet);
-  const gameStatus = useGameStore((state) => state.gameStatus);
-  const updateBalance = useGameStore((state) => state.updateBalance);
-  const startGame = useGameStore((state) => state.startGame);
-  const endGame = useGameStore((state) => state.endGame);
-  const resetGame = useGameStore((state) => state.resetGame);
-  const setLastWinAmount = useGameStore((state) => state.setLastWinAmount);
-  const lastWinAmount = useGameStore((state) => state.lastWinAmount);
+  const {
+    currentBet,
+    gameStatus,
+    updateBalance,
+    startGame,
+    endGame,
+    resetGame,
+    setLastWinAmount,
+    lastWinAmount,
+  } = useGame();
 
   const { playSound } = useSound();
   const isMuted = useSoundStore((state) => state.isMuted);
