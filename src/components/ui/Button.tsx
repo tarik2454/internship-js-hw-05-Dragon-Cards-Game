@@ -6,9 +6,14 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 }
 
-export function Button({ children, className, ...props }: ButtonProps) {
+export function Button({
+  children,
+  type = "submit",
+  className,
+  ...props
+}: ButtonProps) {
   return (
-    <button {...props} className={cx(styles.button, className)}>
+    <button {...props} type={type} className={cx(styles.button, className)}>
       {children}
     </button>
   );

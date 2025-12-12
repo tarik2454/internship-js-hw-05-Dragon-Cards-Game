@@ -12,25 +12,20 @@ export default function GamePage() {
   return (
     <PageWrapper>
       <Container>
-        <Section title="Welcome to Dragon Cards!">
+        <Section>
           <div className={styles.gamePage}>
-            <h1 className={styles.title}>Dragon Cards</h1>
+            <aside className={styles.aside}>
+              <BetInput />
+              <RiskSelector />
 
-            <div className={styles.grid}>
-              <div className={styles.panel}>
-                <h2 className={styles.panelTitle}>Game Board</h2>
+              <PlaceBetButton />
+            </aside>
+
+            <div>
+              <div>
                 <CardGrid />
-                <div className={styles.multiplierContainer}>
+                <div>
                   <MultiplierLabel />
-                </div>
-              </div>
-
-              <div className={styles.panel}>
-                <h2 className={styles.panelTitle}>Controls</h2>
-                <div className={styles.controls}>
-                  <BetInput />
-                  <RiskSelector />
-                  <PlaceBetButton />
                 </div>
               </div>
             </div>

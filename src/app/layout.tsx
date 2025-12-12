@@ -35,7 +35,7 @@ export default function RootLayout({
       <body
         className={`${rubik.variable} ${montserrat.variable} ${medievalSharp.variable}`}
       >
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   );

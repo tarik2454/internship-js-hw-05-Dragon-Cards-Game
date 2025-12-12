@@ -1,9 +1,13 @@
 .button {
-  padding: 7px 10px 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
   border-radius: var(--radius-4);
   background-color: var(--button-bg-color);
   color: var(--secondary-text-color);
   cursor: pointer;
+  opacity: 0.8;
   transition: var(--transition-base);
 
   &:hover {
@@ -11,9 +15,6 @@
   }
 
   &:active {
-    background-color: var(--button-hover-color);
-    box-shadow: var(--shadow-button);
-    color: var(--accent-color);
   }
 
   &:disabled {
