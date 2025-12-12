@@ -7,10 +7,17 @@
   background-color: var(--black-1e-color);
   color: white;
   font-weight: 500;
+  font-family: inherit;
 
   &:focus {
   }
 
   &::placeholder {
   }
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

@@ -1,8 +1,10 @@
 .multiplierLabel {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  margin-top: 12px;
-  gap: 12px;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 15px;
+  gap: 15px;
 }
 
 .multiplierItem {

@@ -4,9 +4,10 @@ import styles from "./Input.module.scss";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
+  type?: string;
 }
 
-export function Input({ label, className, ...props }: InputProps) {
+export function Input({ label, className, type, ...props }: InputProps) {
   const id = React.useId();
 
   return (
@@ -17,7 +18,12 @@ export function Input({ label, className, ...props }: InputProps) {
         </label>
       )}
 
-      <input id={id} {...props} className={cx(styles.input, className)} />
+      <input
+        id={id}
+        {...props}
+        type={type}
+        className={cx(styles.input, className)}
+      />
     </div>
   );
 }

@@ -31,12 +31,29 @@
 }
 
 .gameBoard {
+  @include flexCenter;
+  position: relative;
+  flex-direction: column;
   height: 100%;
   padding: 25px;
   background-image: url("/images/dragon-bg.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.soundButton {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 6px;
+  border-radius: var(--radius-8);
+  border-color: var(--black-27-color);
+  opacity: 1;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .balanceContainer {
@@ -49,4 +66,41 @@
 
 .balance {
   color: var(--gray-80-color);
+}
+
+.cashoutButton {
+  width: 100%;
+  margin-top: 10px;
+  background-color: #22c55e; // Green
+  
+  &:hover {
+    background-color: #16a34a;
+  }
+}
+
+.multiplierInfo {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  color: #ffd026;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.winMessage {
+  color: #22c55e;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.loseMessage {
+  color: #ef4444;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 1.2rem;
 }

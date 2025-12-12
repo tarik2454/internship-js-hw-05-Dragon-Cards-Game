@@ -1,8 +1,18 @@
 .cardGrid {
-  display: grid;
-  grid-template-rows: 200px;
-  // grid-template-columns: repeat(6, minmax(50px, 200px));
-  grid-template-columns: repeat(6, 1fr);
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
   gap: 15px;
+}
+
+.topRow,
+.bottomRow {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  align-items: start;
+  // Важно: чтобы при перетаскивании элементы не центрировались, если их становится меньше
+  justify-content: start;
+  min-height: 200px;
+  gap: 10px;
 }

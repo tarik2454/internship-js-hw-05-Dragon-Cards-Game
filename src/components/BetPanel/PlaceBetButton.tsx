@@ -1,7 +1,22 @@
-import React from "react";
 import { Button } from "../ui/Button";
 import styles from "./PlaceBetButton.module.scss";
 
-export const PlaceBetButton = () => {
-  return <Button className={styles.placeBetButton}>Place Bet</Button>;
+interface PlaceBetButtonProps {
+  onClick?: () => void;
+  disabled?: boolean;
+}
+
+export const PlaceBetButton = ({
+  onClick,
+  disabled = false,
+}: PlaceBetButtonProps) => {
+  return (
+    <Button
+      className={styles.placeBetButton}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      Place Bet
+    </Button>
+  );
 };
