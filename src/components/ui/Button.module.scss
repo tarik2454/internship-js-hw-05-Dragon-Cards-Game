@@ -4,14 +4,16 @@
   justify-content: center;
   border: none;
   border-radius: var(--radius-4);
-  background-color: var(--button-bg-color);
+  background-color: var(--black-30-color);
   color: var(--secondary-text-color);
+  font-family: var(--primary-font-rubik);
   cursor: pointer;
   opacity: 0.8;
   transition: var(--transition-base);
 
   &:hover {
-    background-color: var(--button-hover-color);
+    background-color: var(--black-34-color);
+    opacity: 1;
   }
 
   &:active {

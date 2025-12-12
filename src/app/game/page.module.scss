@@ -1,9 +1,52 @@
-.gamePage {
+@use "@/styles/index" as *;
+
+.section {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.gameBlock {
   display: grid;
   grid-template-columns: 350px 1fr;
+  flex: 1;
+  // grid-template-columns: minmax(200px, 350px) minmax(300px, 1fr);
+  overflow: hidden;
+  border-radius: var(--radius-16);
 }
 
 .aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
   padding: 24px 16px;
   background-color: var(--secondary-bg-color);
+}
+
+.asideInner {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.gameBoard {
+  height: 100%;
+  padding: 25px;
+  background-image: url("/images/dragon-bg.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.balanceContainer {
+  @include flexCenter;
+  padding: 7px 10px 8px;
+  gap: 10px;
+  border-radius: var(--radius-4);
+  background: var(--black-30-color);
+}
+
+.balance {
+  color: var(--gray-80-color);
 }

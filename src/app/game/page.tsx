@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { BetInput } from "@/components/BetPanel/BetInput";
 import { PlaceBetButton } from "@/components/BetPanel/PlaceBetButton";
 import { RiskSelector } from "@/components/BetPanel/RiskSelector";
@@ -7,27 +10,38 @@ import { Container } from "@/components/ui/Container";
 import { PageWrapper } from "@/components/ui/PageWrapper";
 import { Section } from "@/components/ui/Section";
 import styles from "./page.module.scss";
+import { useBalance } from "@/hooks/useBalance";
 
 export default function GamePage() {
+  const [risk, setRisk] = useState<"low" | "medium" | "high" | "classic">(
+    "low",
+  );
+
+  const balance = useBalance();
+
   return (
     <PageWrapper>
-      <Container>
-        <Section>
-          <div className={styles.gamePage}>
+      <Container className={styles.container}>
+        <Section className={styles.section}>
+          <div className={styles.gameBlock}>
             <aside className={styles.aside}>
-              <BetInput />
-              <RiskSelector />
+              <div className={styles.asideInner}>
+                <BetInput />
+                <RiskSelector selected={risk} onChange={(v) => setRisk(v)} />
+                <PlaceBetButton />
+              </div>
 
-              <PlaceBetButton />
-            </aside>
-
-            <div>
               <div>
-                <CardGrid />
-                <div>
-                  <MultiplierLabel />
+                <div className={styles.balanceContainer}>
+                  <span className={styles.balance}>Balance:</span>
+                  <span className={styles.amount}>{balance.toFixed(2)}</span>
                 </div>
               </div>
+            </aside>
+
+            <div className={styles.gameBoard}>
+              <CardGrid />
+              <MultiplierLabel risk={risk} />
             </div>
           </div>
         </Section>

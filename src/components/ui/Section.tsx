@@ -10,7 +10,7 @@ interface SectionProps {
 export function Section({ children, className = "" }: SectionProps) {
   return (
     <section className={cx(styles.section, className)}>
-      <div className={styles.content}>{children}</div>
+      <>{children}</>
     </section>
   );
 }

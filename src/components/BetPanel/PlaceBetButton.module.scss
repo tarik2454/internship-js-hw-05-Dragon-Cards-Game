@@ -1,3 +1,17 @@
 .placeBetButton {
-  margin-top: 1rem;
+  width: 100%;
+  min-height: 40px;
+  border-radius: var(--radius-8);
+  background-color: var(--blue-c1-color);
+  color: var(--primary-text-color);
+  font-weight: 500;
+  opacity: 1;
+
+  &:hover {
+    background-color: var(--blue-c1-color);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
 }
