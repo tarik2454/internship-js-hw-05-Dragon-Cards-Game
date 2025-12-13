@@ -13,6 +13,8 @@ interface CardProps {
   isSelected?: boolean;
   onClick?: () => void;
   disabled?: boolean;
+  flipId?: string;
+  isTopRow?: boolean;
 }
 
 export const Card = ({
@@ -24,13 +26,16 @@ export const Card = ({
   isSelected = false,
   onClick,
   disabled = false,
+  flipId,
+  isTopRow = false,
 }: CardProps) => {
   const cardContent = (
     <div
       className={`${styles.card} ${isSelected ? styles.selected : ""} ${
         disabled ? styles.disabled : ""
-      }`}
+      } ${isTopRow ? styles.topRowCard : ""}`}
       onClick={!disabled ? onClick : undefined}
+      data-flip-id={!draggableId ? flipId : undefined}
     >
       <div className={`${styles.cardInner} ${flipped ? styles.flipped : ""}`}>
         <div className={`${styles.cardFace} ${styles.cardFront}`}>
@@ -57,11 +62,10 @@ export const Card = ({
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             className={`${snapshot.isDragging ? styles.dragging : ""} ${styles.draggableWrapper}`}
-            // Важно: сохраняем стиль, который дает библиотека (позиционирование)
             style={{
               ...provided.draggableProps.style,
-              // Можно добавить фиксы стилей, если нужно
             }}
+            data-flip-id={flipId}
           >
             {cardContent}
           </div>

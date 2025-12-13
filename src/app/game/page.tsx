@@ -29,6 +29,9 @@ export default function GamePage() {
   const [topRowCards, setTopRowCards] = useState(CARD_DATA);
   const [bottomRowCards, setBottomRowCards] = useState(CARD_DATA);
   const [isFlipping, setIsFlipping] = useState(false);
+  const [matchedIndices, setMatchedIndices] = useState<boolean[]>(
+    Array(6).fill(false),
+  );
 
   const balance = useBalance();
   const {
@@ -47,11 +50,15 @@ export default function GamePage() {
   const toggleMute = useSoundStore((state) => state.toggleMute);
 
   const handlePlaceBet = () => {
+    playSound("click");
+
     const isAnyCardRevealed = topRowFlippedStates.some((flipped) => !flipped);
 
     if (currentBet <= 0 || currentBet > balance || isFlipping) {
       return;
     }
+
+    playSound("reveal");
 
     if (isAnyCardRevealed) {
       setIsFlipping(true);
@@ -69,7 +76,7 @@ export default function GamePage() {
   const startNewRound = () => {
     startGame(0);
     setIsFlipping(true);
-    playSound("start");
+    setMatchedIndices(Array(6).fill(false));
     updateBalance(-currentBet);
 
     const shuffledTopRow = [...CARD_DATA].sort(() => Math.random() - 0.5);
@@ -87,11 +94,26 @@ export default function GamePage() {
           return newState;
         });
 
-        playSound("flip");
+        playSound("cardFlip");
 
         if (i === shuffledTopRow.length - 1) {
           setTimeout(() => {
             setIsFlipping(false);
+
+            const matches = shuffledTopRow.map(
+              (card, index) => card.id === bottomRowCards[index].id,
+            );
+            setMatchedIndices(matches);
+
+            const matchCount = matches.filter(Boolean).length;
+            if (matchCount > 0) {
+              for (let j = 0; j < matchCount; j++) {
+                setTimeout(() => {
+                  playSound("result");
+                }, j * 300);
+              }
+            }
+
             const totalWin = calculateWin(
               shuffledTopRow,
               bottomRowCards,
@@ -101,11 +123,10 @@ export default function GamePage() {
 
             if (totalWin > 0) {
               updateBalance(totalWin);
-              setLastWinAmount(totalWin); // Сохраняем выигрыш
-              playSound("win");
+              setLastWinAmount(totalWin);
+
               endGame("won");
             } else {
-              playSound("lose");
               endGame("lost");
             }
           }, FLIP_DURATION);
@@ -121,8 +142,12 @@ export default function GamePage() {
           <div className={styles.gameBlock}>
             <aside className={styles.aside}>
               <div className={styles.asideInner}>
-                <BetInput />
-                <RiskSelector selected={risk} onChange={(v) => setRisk(v)} />
+                <BetInput disabled={isFlipping || gameStatus === "playing"} />
+                <RiskSelector
+                  selected={risk}
+                  onChange={(v) => setRisk(v)}
+                  disabled={isFlipping || gameStatus === "playing"}
+                />
                 <PlaceBetButton
                   onClick={handlePlaceBet}
                   disabled={
@@ -135,18 +160,21 @@ export default function GamePage() {
               </div>
 
               <div>
+                {gameStatus === "won" && lastWinAmount !== null && (
+                  <div className={`${styles.gameMessage} ${styles.won}`}>
+                    You Won {lastWinAmount.toFixed(2)}!
+                  </div>
+                )}
+                {gameStatus === "lost" && currentBet > 0 && (
+                  <div className={`${styles.gameMessage} ${styles.lost}`}>
+                    You Lost {currentBet.toFixed(2)}
+                  </div>
+                )}
+
                 <div className={styles.balanceContainer}>
                   <span className={styles.balance}>Balance:</span>
                   <span className={styles.amount}>{balance.toFixed(2)}</span>
                 </div>
-                {gameStatus === "won" && lastWinAmount !== null && (
-                  <div className={styles.winMessage}>
-                    You Won {lastWinAmount.toFixed(2)}!
-                  </div>
-                )}
-                {gameStatus === "lost" && (
-                  <div className={styles.loseMessage}>Game Over</div>
-                )}
               </div>
             </aside>
 
@@ -172,7 +200,7 @@ export default function GamePage() {
                 bottomRowCards={bottomRowCards}
                 onBottomRowChange={setBottomRowCards}
               />
-              <MultiplierLabel risk={risk} />
+              <MultiplierLabel risk={risk} matchedIndices={matchedIndices} />
             </div>
           </div>
         </Section>

@@ -9,7 +9,7 @@ import { useGameStore } from "@/store/gameStore";
 const MAX_BET = 1000;
 const MIN_BET = 0.01;
 
-export const BetInput = () => {
+export const BetInput = ({ disabled }: { disabled?: boolean }) => {
   interface GameStoreSelector {
     setBet: (amount: number) => void;
   }
@@ -47,13 +47,28 @@ export const BetInput = () => {
 
       <div className={styles.inputWrapper}>
         <div className={styles.buttonWrapper}>
-          <Button type="button" className={styles.button} onClick={applyHalf}>
+          <Button
+            type="button"
+            className={styles.button}
+            onClick={applyHalf}
+            disabled={disabled}
+          >
             1/2
           </Button>
-          <Button type="button" className={styles.button} onClick={applyDouble}>
+          <Button
+            type="button"
+            className={styles.button}
+            onClick={applyDouble}
+            disabled={disabled}
+          >
             x2
           </Button>
-          <Button type="button" className={styles.button} onClick={applyMax}>
+          <Button
+            type="button"
+            className={styles.button}
+            onClick={applyMax}
+            disabled={disabled}
+          >
             Max
           </Button>
         </div>
@@ -65,6 +80,7 @@ export const BetInput = () => {
           min={MIN_BET}
           max={MAX_BET}
           step="0.01"
+          disabled={disabled}
         />
       </div>
     </div>

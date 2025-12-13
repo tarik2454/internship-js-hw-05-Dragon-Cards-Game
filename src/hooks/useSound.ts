@@ -21,43 +21,45 @@ export const useSoundStore = create<SoundStore>()(
 );
 
 const SOUNDS = {
-  click: "/sounds/click.mp3",
-  flip: "/sounds/flip.mp3",
-  win: "/sounds/win.mp3",
-  lose: "/sounds/lose.mp3",
-  start: "/sounds/start.mp3",
+  click: "/sounds/click.wav",
+  cardFlip: "/sounds/card-flip.mp3",
+  reveal: "/sounds/reveal.mp3",
+  result: "/sounds/result.mp3",
 };
 
 export const useSound = () => {
   const isMuted = useSoundStore((state) => state.isMuted);
   const sounds = useRef<Record<keyof typeof SOUNDS, Howl | null>>({
     click: null,
-    flip: null,
-    win: null,
-    lose: null,
-    start: null,
+    cardFlip: null,
+    reveal: null,
+    result: null,
   });
 
   useEffect(() => {
     Object.entries(SOUNDS).forEach(([key, src]) => {
+      const volume = key === "cardFlip" ? 0.1 : 0.5;
       sounds.current[key as keyof typeof SOUNDS] = new Howl({
         src: [src],
-        volume: 0.5,
+        volume,
       });
     });
 
+    const currentSounds = sounds.current;
+
     return () => {
-      // Cleanup sounds
-      Object.values(sounds.current).forEach((sound) => sound?.unload());
+      Object.values(currentSounds).forEach((sound) => sound?.unload());
     };
   }, []);
 
   const playSound = (type: keyof typeof SOUNDS) => {
     if (!isMuted && sounds.current[type]) {
+      if (type !== "cardFlip") {
+        sounds.current[type]?.stop();
+      }
       sounds.current[type]?.play();
     }
   };
 
   return { playSound, isMuted };
 };
-

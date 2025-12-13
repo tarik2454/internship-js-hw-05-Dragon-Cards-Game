@@ -14,6 +14,14 @@
 
   &::placeholder {
   }
+
+  &:disabled {
+    -webkit-text-fill-color: white;
+    background-color: var(--black-1e-color);
+    color: white;
+    cursor: not-allowed;
+    opacity: 1;
+  }
 }
 
 input[type="number"]::-webkit-inner-spin-button,

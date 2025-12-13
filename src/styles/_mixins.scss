@@ -23,23 +23,3 @@
     @content;
   }
 }
-
-@mixin padded($base: 40px, $md: 48px, $lg: 64px, $sm: 28px) {
-  padding-top: $base;
-  padding-bottom: $base;
-
-  @media (min-width: 1280px) {
-    padding-top: $lg;
-    padding-bottom: $lg;
-  }
-
-  @media (max-width: 1025px) {
-    padding-top: $md;
-    padding-bottom: $md;
-  }
-
-  @media (max-width: 550px) {
-    padding-top: $sm;
-    padding-bottom: $sm;
-  }
-}

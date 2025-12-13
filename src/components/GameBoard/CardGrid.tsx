@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useLayoutEffect, useRef } from "react";
 import { DragDropContext, Droppable, DropResult } from "@hello-pangea/dnd";
 import { Card } from "./Card";
 import styles from "./CardGrid.module.scss";
@@ -30,6 +30,49 @@ export const CardGrid = ({
   const [selectedCardIndex, setSelectedCardIndex] = useState<number | null>(
     null,
   );
+
+  const prevPositions = useRef<Record<string, DOMRect>>({});
+
+  useLayoutEffect(() => {
+    const newPositions: Record<string, DOMRect> = {};
+    const elements = document.querySelectorAll("[data-flip-id]");
+    elements.forEach((el) => {
+      const id = el.getAttribute("data-flip-id");
+      if (id) newPositions[id] = el.getBoundingClientRect();
+    });
+
+    Object.keys(newPositions).forEach((id) => {
+      const prev = prevPositions.current[id];
+      const current = newPositions[id];
+      if (prev && current) {
+        const deltaX = prev.left - current.left;
+        const deltaY = prev.top - current.top;
+
+        if (deltaX !== 0 || deltaY !== 0) {
+          const element = document.querySelector(
+            `[data-flip-id='${id}']`,
+          ) as HTMLElement;
+          if (element) {
+            element.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+            element.style.transition = "none";
+
+            requestAnimationFrame(() => {
+              // Force reflow
+              element.getBoundingClientRect();
+              element.style.transition = "transform 300ms ease";
+              element.style.transform = "";
+            });
+
+            setTimeout(() => {
+              element.style.transition = "";
+            }, 300);
+          }
+        }
+      }
+    });
+
+    prevPositions.current = newPositions;
+  }); // Run on every render to capture latest positions
 
   const onDragEnd = (result: DropResult) => {
     if (!result.destination || !onBottomRowChange) {
@@ -68,10 +111,12 @@ export const CardGrid = ({
         <div className={styles.topRow}>
           {topRowCards.map((card, index) => (
             <Card
-              key={index}
+              key={card.id}
               image={card.image}
               alt={card.alt}
               flipped={topRowFlippedStates ? topRowFlippedStates[index] : true}
+              flipId={`top-${card.id}`}
+              isTopRow={true}
             />
           ))}
         </div>
@@ -93,6 +138,7 @@ export const CardGrid = ({
                   flipped={false}
                   isSelected={selectedCardIndex === index}
                   onClick={() => handleCardClick(index)}
+                  flipId={`bottom-${card.id}`}
                 />
               ))}
               {provided.placeholder}

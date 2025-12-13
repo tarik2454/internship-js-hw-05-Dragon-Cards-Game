@@ -17,6 +17,11 @@
 .riskSelectotBtn {
   padding: 7px 10px 8px 10px;
   box-shadow: 0 0 7.4px #ffd0260d inset;
+
+  &:disabled {
+    background-color: var(--black-30-color) !important;
+    cursor: not-allowed;
+  }
 }
 
 .active {

@@ -44,4 +44,10 @@
     color: var(--primary-text-color);
     opacity: 1;
   }
+
+  &:disabled {
+    background-color: var(--black-30-color) !important;
+    color: var(--gray-f6-color);
+    cursor: not-allowed;
+  }
 }

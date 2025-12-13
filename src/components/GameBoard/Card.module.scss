@@ -1,8 +1,8 @@
 .card {
   position: relative;
   width: 100%;
-  height: 100%;
-  min-height: 200px;
+  height: 200px;
+  border-radius: var(--radius-20);
   cursor: pointer;
   perspective: 1000px;
   transition: var(--transition-base);
@@ -27,7 +27,7 @@
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  border-radius: var(--radius-20);
+
   transition: transform 0.6s;
 }
 
@@ -50,12 +50,6 @@
   height: 100%;
   overflow: hidden;
   border-radius: var(--radius-20);
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 }
 
 .cardFront {
@@ -88,7 +82,6 @@
 
 .selected {
   z-index: 100;
-  transform: scale(1.1);
   box-shadow:
     0 0 4px 5.5px #ffd026,
     0 0 5px 5px #ffd026,
@@ -97,9 +90,8 @@
 
 .dragging {
   z-index: 1000;
-  transform: scale(1.05);
   cursor: grabbing;
-  opacity: 0.8; // Чуть прозрачный при перетаскивании
+  opacity: 0.8;
 
   .card {
     cursor: grabbing;
@@ -110,4 +102,8 @@
   width: 100%;
   height: 100%;
   min-height: 200px;
+}
+
+.topRowCard {
+  cursor: default !important;
 }

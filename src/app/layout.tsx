@@ -17,7 +17,7 @@ const montserrat = Montserrat({
 const medievalSharp = MedievalSharp({
   variable: "--tertiary-font-medieval",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: "400",
 });
 
 export const metadata: Metadata = {
