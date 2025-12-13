@@ -4,6 +4,8 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .gameBlock {
@@ -20,6 +22,10 @@
     flex-direction: column-reverse;
     padding-top: 52px;
     gap: 24px;
+  }
+
+  @include minWidth(md) {
+    max-height: 700px;
   }
 }
 
