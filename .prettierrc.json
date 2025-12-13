@@ -2,7 +2,6 @@
   "plugins": ["prettier-plugin-css-order"],
   "cssDeclarationSorterOrder": "smacss",
   "cssDeclarationSorterKeepOverrides": false,
-  "editor.formatOnSave": true,
   "printWidth": 80,
   "tabWidth": 2,
   "useTabs": false,
