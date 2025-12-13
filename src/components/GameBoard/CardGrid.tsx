@@ -32,6 +32,7 @@ export const CardGrid = ({
   );
 
   const prevPositions = useRef<Record<string, DOMRect>>({});
+  const ignoreNextFlip = useRef(false);
 
   useLayoutEffect(() => {
     const newPositions: Record<string, DOMRect> = {};
@@ -40,6 +41,12 @@ export const CardGrid = ({
       const id = el.getAttribute("data-flip-id");
       if (id) newPositions[id] = el.getBoundingClientRect();
     });
+
+    if (ignoreNextFlip.current) {
+      ignoreNextFlip.current = false;
+      prevPositions.current = newPositions;
+      return;
+    }
 
     Object.keys(newPositions).forEach((id) => {
       const prev = prevPositions.current[id];
@@ -78,6 +85,8 @@ export const CardGrid = ({
     if (!result.destination || !onBottomRowChange) {
       return;
     }
+
+    ignoreNextFlip.current = true;
 
     const items = Array.from(bottomRowCards);
     const [reorderedItem] = items.splice(result.source.index, 1);
