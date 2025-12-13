@@ -7,7 +7,7 @@ import { Button } from "../ui/Button";
 import { useGameStore } from "@/store/gameStore";
 
 const MAX_BET = 1000;
-const MIN_BET = 0.01;
+const MIN_BET = 1;
 
 export const BetInput = ({ disabled }: { disabled?: boolean }) => {
   interface GameStoreSelector {
@@ -79,7 +79,7 @@ export const BetInput = ({ disabled }: { disabled?: boolean }) => {
           onChange={onChange}
           min={MIN_BET}
           max={MAX_BET}
-          step="0.01"
+          step="1"
           disabled={disabled}
         />
       </div>
