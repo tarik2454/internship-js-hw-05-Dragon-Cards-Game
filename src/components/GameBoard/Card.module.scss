@@ -7,14 +7,14 @@
   perspective: 1000px;
   transition: var(--transition-base);
 
-  &:hover:not(.flipping) {
+  &:hover:not(.flipping):not(.topRowCard) {
     box-shadow:
       0 0 4px 5.5px #264079,
       0 0 5px 5px #6066d0,
       0 0 8px 4.5px #15688e;
   }
 
-  &:active:not(.flipping) {
+  &:active:not(.flipping):not(.topRowCard) {
     box-shadow:
       0 0 4px 5.5px #e56018,
       0 0 5px 5px #d0c960,
