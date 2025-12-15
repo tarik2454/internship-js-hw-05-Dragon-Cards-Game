@@ -1,8 +1,10 @@
 :root {
+  /* Fonts */
   --primary-font-rubik: "Rubik";
   --secondary-font-montserrat: "Montserrat";
   --tertiary-font-medieval: "MedievalSharp", cursive;
 
+  /* Colors */
   --primary-text-color: #fff;
   --secondary-text-color: #ffffff40;
   --accent-color: #ffd026;
@@ -23,15 +25,18 @@
 
   --blue-c1-color: #025cc1;
 
+  /* Shadows */
   --shadow-card:
     0 0 4px 5.5px #264079, 0 0 5px 5px #6066d0, 0 0 8px 4.5px #15688e;
   --shadow-button: 0 0 7.4px #ffd0260d inset;
 
+  /* Radius */
   --radius-4: 4px;
   --radius-8: 8px;
   --radius-16: 16px;
   --radius-20: 20px;
 
+  /* Transitions */
   --transition-slow: all 0.5s ease-in-out;
   --transition-base: all 0.2s ease-in-out;
 }

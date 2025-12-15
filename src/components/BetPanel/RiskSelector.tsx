@@ -2,7 +2,7 @@
 
 import styles from "./RiskSelector.module.scss";
 import { Button } from "../ui/Button";
-import cx from "classnames";
+import { cx } from "@/utils/classNames";
 
 interface RiskSelectorProps {
   selected: "low" | "medium" | "high" | "classic";

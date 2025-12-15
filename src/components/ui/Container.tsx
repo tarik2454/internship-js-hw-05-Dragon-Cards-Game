@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import cx from "classnames";
+import { cx } from "@/utils/classNames";
 import styles from "./Container.module.scss";
 
 interface ContainerProps {

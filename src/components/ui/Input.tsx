@@ -1,5 +1,5 @@
 import React from "react";
-import cx from "classnames";
+import { cx } from "@/utils/classNames";
 import styles from "./Input.module.scss";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {

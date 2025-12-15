@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import cx from "classnames";
+import { cx } from "@/utils/classNames";
 import styles from "./Section.module.scss";
 
 interface SectionProps {
