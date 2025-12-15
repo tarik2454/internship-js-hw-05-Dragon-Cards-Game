@@ -199,6 +199,7 @@ export default function GamePage() {
                 topRowCards={topRowCards}
                 bottomRowCards={bottomRowCards}
                 onBottomRowChange={setBottomRowCards}
+                disabled={isFlipping || gameStatus === "playing"}
               />
               <MultiplierLabel risk={risk} matchedIndices={matchedIndices} />
             </div>

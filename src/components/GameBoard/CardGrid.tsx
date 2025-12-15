@@ -19,6 +19,7 @@ interface CardGridProps {
   topRowCards?: typeof CARD_DATA;
   bottomRowCards?: typeof CARD_DATA;
   onBottomRowChange?: (cards: typeof CARD_DATA) => void;
+  disabled?: boolean;
 }
 
 export const CardGrid = ({
@@ -26,6 +27,7 @@ export const CardGrid = ({
   topRowCards = CARD_DATA,
   bottomRowCards = CARD_DATA,
   onBottomRowChange,
+  disabled = false,
 }: CardGridProps) => {
   const [selectedCardIndex, setSelectedCardIndex] = useState<number | null>(
     null,
@@ -82,7 +84,7 @@ export const CardGrid = ({
   }); // Run on every render to capture latest positions
 
   const onDragEnd = (result: DropResult) => {
-    if (!result.destination || !onBottomRowChange) {
+    if (!result.destination || !onBottomRowChange || disabled) {
       return;
     }
 
@@ -97,7 +99,7 @@ export const CardGrid = ({
   };
 
   const handleCardClick = (index: number) => {
-    if (!onBottomRowChange) return;
+    if (!onBottomRowChange || disabled) return;
 
     if (selectedCardIndex === null) {
       setSelectedCardIndex(index);
@@ -147,6 +149,7 @@ export const CardGrid = ({
                   isSelected={selectedCardIndex === index}
                   onClick={() => handleCardClick(index)}
                   flipId={`bottom-${card.id}`}
+                  disabled={disabled}
                 />
               ))}
               {provided.placeholder}
