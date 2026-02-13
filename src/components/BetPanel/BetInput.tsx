@@ -10,11 +10,7 @@ const MAX_BET = 1000;
 const MIN_BET = 1;
 
 export const BetInput = ({ disabled }: { disabled?: boolean }) => {
-  interface GameStoreSelector {
-    setBet: (amount: number) => void;
-  }
-
-  const setBetInStore = useGameStore((s: GameStoreSelector) => s.setBet);
+  const setBetInStore = useGameStore((s) => s.setBet);
   const [bet, setBet] = useState<number>(1);
 
   React.useEffect(() => {

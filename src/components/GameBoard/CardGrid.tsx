@@ -122,7 +122,7 @@ export const CardGrid = ({
         <div className={styles.topRow}>
           {topRowCards.map((card, index) => (
             <Card
-              key={index}
+              key={card.id}
               image={card.image}
               alt={card.alt}
               flipped={topRowFlippedStates ? topRowFlippedStates[index] : true}

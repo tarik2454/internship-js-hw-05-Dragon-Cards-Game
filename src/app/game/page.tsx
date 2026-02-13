@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BetInput } from "@/components/BetPanel/BetInput";
 import { PlaceBetButton } from "@/components/BetPanel/PlaceBetButton";
 import { RiskSelector } from "@/components/BetPanel/RiskSelector";
@@ -33,6 +33,25 @@ export default function GamePage() {
     Array(6).fill(false),
   );
 
+  const timeoutIds = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  useEffect(() => {
+    return () => {
+      timeoutIds.current.forEach(clearTimeout);
+    };
+  }, []);
+
+  const addTimeout = (callback: () => void, delay: number) => {
+    const id = setTimeout(callback, delay);
+    timeoutIds.current.push(id);
+    return id;
+  };
+
+  const clearAllTimeouts = () => {
+    timeoutIds.current.forEach(clearTimeout);
+    timeoutIds.current = [];
+  };
+
   const balance = useBalance();
   const {
     currentBet,
@@ -64,7 +83,7 @@ export default function GamePage() {
       setIsFlipping(true);
       setTopRowFlippedStates(Array(6).fill(true));
 
-      setTimeout(() => {
+      addTimeout(() => {
         resetGame();
         startNewRound();
       }, FLIP_DURATION);
@@ -74,7 +93,8 @@ export default function GamePage() {
   };
 
   const startNewRound = () => {
-    startGame(0);
+    clearAllTimeouts();
+    startGame();
     setIsFlipping(true);
     setMatchedIndices(Array(6).fill(false));
     updateBalance(-currentBet);
@@ -87,7 +107,7 @@ export default function GamePage() {
 
   const flipCardsSequentially = (shuffledTopRow: typeof CARD_DATA) => {
     for (let i = 0; i < shuffledTopRow.length; i++) {
-      setTimeout(() => {
+      addTimeout(() => {
         setTopRowFlippedStates((prev) => {
           const newState = [...prev];
           newState[i] = false;
@@ -97,7 +117,7 @@ export default function GamePage() {
         playSound("cardFlip");
 
         if (i === shuffledTopRow.length - 1) {
-          setTimeout(() => {
+          addTimeout(() => {
             setIsFlipping(false);
 
             const matches = shuffledTopRow.map(
@@ -108,7 +128,7 @@ export default function GamePage() {
             const matchCount = matches.filter(Boolean).length;
             if (matchCount > 0) {
               for (let j = 0; j < matchCount; j++) {
-                setTimeout(() => {
+                addTimeout(() => {
                   playSound("result");
                 }, j * 300);
               }

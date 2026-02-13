@@ -3,6 +3,7 @@
 import { Draggable } from "@hello-pangea/dnd";
 import Image from "next/image";
 import styles from "./Card.module.scss";
+import { cx } from "@/utils/classNames";
 
 interface CardProps {
   image: string;
@@ -31,17 +32,19 @@ export const Card = ({
 }: CardProps) => {
   const cardContent = (
     <div
-      className={`${styles.card} ${isSelected ? styles.selected : ""} ${
-        disabled ? styles.disabled : ""
-      } ${isTopRow ? styles.topRowCard : ""}`}
+      className={cx(styles.card, {
+        [styles.selected]: isSelected,
+        [styles.disabled]: disabled,
+        [styles.topRowCard]: isTopRow,
+      })}
       onClick={!disabled ? onClick : undefined}
       data-flip-id={!draggableId ? flipId : undefined}
     >
-      <div className={`${styles.cardInner} ${flipped ? styles.flipped : ""}`}>
-        <div className={`${styles.cardFace} ${styles.cardFront}`}>
+      <div className={cx(styles.cardInner, { [styles.flipped]: flipped })}>
+        <div className={cx(styles.cardFace, styles.cardFront)}>
           <Image src={image} fill sizes="200px" alt={alt} />
         </div>
-        <div className={`${styles.cardFace} ${styles.cardBack}`}>
+        <div className={cx(styles.cardFace, styles.cardBack)}>
           <Image
             src="/images/cards/backface.png"
             fill
@@ -61,7 +64,9 @@ export const Card = ({
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
-            className={`${snapshot.isDragging ? styles.dragging : ""} ${styles.draggableWrapper}`}
+            className={cx(styles.draggableWrapper, {
+              [styles.dragging]: snapshot.isDragging,
+            })}
             style={{
               ...provided.draggableProps.style,
             }}

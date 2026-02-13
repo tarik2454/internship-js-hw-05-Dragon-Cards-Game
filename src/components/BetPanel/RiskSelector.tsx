@@ -3,10 +3,11 @@
 import styles from "./RiskSelector.module.scss";
 import { Button } from "../ui/Button";
 import { cx } from "@/utils/classNames";
+import { Risk } from "@/utils/generateMultipliers";
 
 interface RiskSelectorProps {
-  selected: "low" | "medium" | "high" | "classic";
-  onChange: (value: "low" | "medium" | "high" | "classic") => void;
+  selected: Risk;
+  onChange: (value: Risk) => void;
   disabled?: boolean;
 }
 
@@ -20,7 +21,7 @@ export const RiskSelector = ({
       <p className={styles.riskTitle}>Risk</p>
       <div className={styles.riskSelectorBtnGroup}>
         <Button
-          className={cx(styles.riskSelectotBtn, {
+          className={cx(styles.riskSelectorBtn, {
             [styles.active]: selected === "low",
           })}
           type="button"
@@ -31,7 +32,7 @@ export const RiskSelector = ({
         </Button>
         <Button
           type="button"
-          className={cx(styles.riskSelectotBtn, {
+          className={cx(styles.riskSelectorBtn, {
             [styles.active]: selected === "medium",
           })}
           onClick={() => onChange("medium")}
@@ -41,7 +42,7 @@ export const RiskSelector = ({
         </Button>
         <Button
           type="button"
-          className={cx(styles.riskSelectotBtn, {
+          className={cx(styles.riskSelectorBtn, {
             [styles.active]: selected === "high",
           })}
           onClick={() => onChange("high")}
@@ -51,7 +52,7 @@ export const RiskSelector = ({
         </Button>
         <Button
           type="button"
-          className={cx(styles.riskSelectotBtn, {
+          className={cx(styles.riskSelectorBtn, {
             [styles.active]: selected === "classic",
           })}
           onClick={() => onChange("classic")}
