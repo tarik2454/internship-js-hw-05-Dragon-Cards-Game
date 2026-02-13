@@ -1,0 +1,15 @@
+.cardGrid {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+  gap: 40px;
+}
+
+.topRow,
+.bottomRow {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(50px, 200px));
+  justify-content: center;
+  gap: 15px;
+}

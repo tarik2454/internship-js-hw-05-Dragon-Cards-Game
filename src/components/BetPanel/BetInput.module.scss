@@ -1,0 +1,53 @@
+@use "@/styles/index" as *;
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 6px;
+  gap: 8px;
+}
+
+.amount {
+  font-weight: 500;
+}
+
+.labelWrapper {
+  @include flexBetween;
+}
+
+.maxBet {
+  color: var(--gray-66-color);
+  font-weight: 500;
+  font-size: 13px;
+  font-size: 13px;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.buttonWrapper {
+  @include flexCenter;
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  gap: 4px;
+}
+
+.button {
+  min-width: 40px;
+  padding: 10px;
+  color: var(--gray-f6-color);
+  font-size: 12px;
+
+  &:hover {
+    color: var(--primary-text-color);
+    opacity: 1;
+  }
+
+  &:disabled {
+    background-color: var(--black-30-color) !important;
+    color: var(--gray-f6-color);
+    cursor: not-allowed;
+  }
+}

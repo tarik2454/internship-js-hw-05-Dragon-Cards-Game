@@ -1,0 +1,10 @@
+@use "@/styles/index" as *;
+
+.wrapper {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px 0;
+}

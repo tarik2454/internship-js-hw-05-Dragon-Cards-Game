@@ -1,0 +1,23 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--radius-4);
+  background-color: var(--black-30-color);
+  color: var(--secondary-text-color);
+  font-family: var(--primary-font-rubik);
+  cursor: pointer;
+  opacity: 0.8;
+  transition: var(--transition-base);
+
+  &:hover {
+    background-color: var(--black-34-color);
+    opacity: 1;
+  }
+
+  &:disabled {
+    background-color: #6b7280;
+    cursor: not-allowed;
+  }
+}

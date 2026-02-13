@@ -1,0 +1,13 @@
+@use "@/styles/index" as *;
+
+.section {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.content {
+  width: 100%;
+}

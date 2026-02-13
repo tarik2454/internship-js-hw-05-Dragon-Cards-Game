@@ -1,0 +1,29 @@
+@use "@/styles/index" as *;
+
+.multiplierLabel {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(50px, 200px));
+  justify-items: center;
+  width: 100%;
+  margin-top: 20px;
+  gap: 15px;
+}
+
+.multiplierItem {
+  @include flexCenter;
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-8);
+  background: var(--black-e8-color);
+  font-weight: 600;
+  font-size: 20px;
+  font-family: var(--tertiary-font-medieval);
+}
+
+.matched {
+  color: var(--green-5e-color);
+}
+
+.matchedLost {
+  color: var(--red-ef-color);
+}

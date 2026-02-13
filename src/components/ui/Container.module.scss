@@ -1,0 +1,24 @@
+@use "@/styles/index" as *;
+
+.container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 8px;
+}
+
+@include minWidth(sm) {
+  .container {
+    max-width: 700px;
+    padding: 0 20px;
+  }
+}
+
+@include minWidth(md) {
+  .container {
+    max-width: 1090px;
+  }
+}

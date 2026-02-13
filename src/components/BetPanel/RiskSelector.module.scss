@@ -1,0 +1,29 @@
+.riskSelector {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.riskTitle {
+  font-weight: 500;
+}
+
+.riskSelectorBtnGroup {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.riskSelectotBtn {
+  padding: 7px 10px 8px 10px;
+  box-shadow: 0 0 7.4px #ffd0260d inset;
+
+  &:disabled {
+    background-color: var(--black-30-color) !important;
+    cursor: not-allowed;
+  }
+}
+
+.active {
+  color: var(--accent-color);
+}
